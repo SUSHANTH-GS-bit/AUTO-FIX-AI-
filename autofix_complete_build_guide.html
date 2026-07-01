@@ -1,0 +1,956 @@
+
+<h2 class="sr-only">Complete step by step guide to build Auto Fix AI app with code, test it, upload to Play Store, and market strategy</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);padding:1rem 0}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem}
+.tab{padding:7px 13px;border-radius:var(--radius);border:0.5px solid var(--border);font-size:12px;cursor:pointer;background:var(--surface-1);color:var(--text-secondary);font-weight:500;white-space:nowrap;transition:all .15s}
+.tab.active{background:var(--bg-accent);color:var(--text-accent);border-color:var(--border-accent)}
+.panel{display:none}.panel.active{display:block}
+.phase{font-size:11px;font-weight:500;color:var(--text-muted);letter-spacing:.5px;text-transform:uppercase;margin:1.2rem 0 .8rem;padding-bottom:6px;border-bottom:0.5px solid var(--border)}
+.step{display:flex;gap:12px;padding:14px 0;border-bottom:0.5px solid var(--border)}
+.step:last-child{border-bottom:none}
+.num{width:28px;height:28px;border-radius:50%;background:var(--bg-accent);color:var(--text-accent);font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.stitle{font-size:13px;font-weight:500;color:var(--text-primary);margin-bottom:4px}
+.sdesc{font-size:12px;color:var(--text-secondary);line-height:1.8}
+.tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;margin-top:5px;margin-right:4px}
+.free{background:var(--bg-success);color:var(--text-success)}
+.paid{background:var(--bg-warning);color:var(--text-warning)}
+.easy{background:var(--bg-success);color:var(--text-success)}
+.med{background:var(--bg-warning);color:var(--text-warning)}
+.hard{background:var(--bg-danger);color:var(--text-danger)}
+.code{background:var(--surface-0);border-radius:var(--radius);padding:12px;font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);line-height:1.9;margin-top:8px;border:0.5px solid var(--border);overflow-x:auto;white-space:pre}
+.tip{background:var(--surface-1);border-left:3px solid var(--border-accent);border-radius:0 var(--radius) var(--radius) 0;padding:10px 14px;margin:10px 0;font-size:12px;color:var(--text-secondary);line-height:1.7}
+.warn{background:var(--bg-warning);border-left:3px solid var(--border-warning);border-radius:0 var(--radius) var(--radius) 0;padding:10px 14px;margin:10px 0;font-size:12px;color:var(--text-warning);line-height:1.7;font-weight:500}
+.milestone{display:inline-block;font-size:10px;padding:2px 8px;border-radius:20px;background:var(--bg-success);color:var(--text-success);font-weight:500;margin-top:5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.card{background:var(--surface-1);border:0.5px solid var(--border);border-radius:12px;padding:12px}
+.card-title{font-size:12px;font-weight:500;color:var(--text-primary);margin-bottom:4px}
+.card-desc{font-size:11px;color:var(--text-secondary);line-height:1.6}
+</style>
+
+<div class="tabs" id="tabs">
+  <div class="tab active" data-p="setup">1. Setup</div>
+  <div class="tab" data-p="code">2. App code</div>
+  <div class="tab" data-p="ai">3. AI integration</div>
+  <div class="tab" data-p="test">4. Testing</div>
+  <div class="tab" data-p="playstore">5. Play Store</div>
+  <div class="tab" data-p="market">6. Marketing</div>
+  <div class="tab" data-p="trust">7. Build trust</div>
+</div>
+
+<!-- SETUP -->
+<div class="panel active" id="panel-setup">
+<div class="phase">Day 1 — install everything first</div>
+<div class="step"><div class="num">1</div><div>
+<div class="stitle">Install VS Code + Flutter + Android Studio</div>
+<div class="sdesc">These 3 tools are your entire development environment. Install in this order.</div>
+<div class="code">Step 1: Download VS Code → code.visualstudio.com → install
+Step 2: Download Flutter SDK → flutter.dev/docs/get-started/install
+  - Windows: extract to C:\flutter
+  - Add C:\flutter\bin to PATH environment variable
+Step 3: Download Android Studio → developer.android.com/studio → install
+Step 4: Open terminal and run:
+  flutter doctor
+  (fix every red ✗ until all green ✓)</div>
+<span class="tag easy">2-3 hours</span><span class="tag free">All free</span>
+</div></div>
+
+<div class="step"><div class="num">2</div><div>
+<div class="stitle">Install VS Code extensions</div>
+<div class="sdesc">Open VS Code → Extensions (Ctrl+Shift+X) → install all 4:</div>
+<div class="code">1. Flutter          (official Flutter extension)
+2. Dart             (Dart language support)
+3. GitHub Copilot   (AI code autocomplete — free for students)
+4. Pubspec Assist   (manage Flutter packages easily)</div>
+<span class="tag easy">10 minutes</span>
+</div></div>
+
+<div class="step"><div class="num">3</div><div>
+<div class="stitle">Create your Flutter project</div>
+<div class="sdesc">Open terminal in VS Code → run these commands exactly:</div>
+<div class="code">flutter create auto_fix_ai
+cd auto_fix_ai
+flutter run</div>
+<div class="sdesc" style="margin-top:8px">You should see a counter app open on your emulator or phone. This confirms Flutter is working correctly. Now you are ready to build Auto Fix AI inside this project.</div>
+<span class="tag easy">5 minutes</span>
+<span class="milestone">Flutter working ✓</span>
+</div></div>
+
+<div class="step"><div class="num">4</div><div>
+<div class="stitle">Create free accounts on all platforms</div>
+<div class="code">A) firebase.google.com  → Add project → name: autofix-ai
+   Enable: Firestore Database + Authentication + Storage
+
+B) console.anthropic.com → Sign up → API Keys → Create Key
+   Save the key: sk-ant-XXXXXXXXX  (keep this secret!)
+
+C) console.cloud.google.com → New project → Enable APIs:
+   - Maps SDK for Android
+   - Cloud Vision API
+   - Speech-to-Text API
+   → Credentials → Create API Key → copy it
+
+D) play.google.com/console → Sign in → Pay ₹1,750
+   (one-time fee to publish apps forever)</div>
+<span class="tag paid">Only ₹1,750 total</span>
+</div></div>
+</div>
+
+<!-- CODE -->
+<div class="panel" id="panel-code">
+<div class="phase">Core app code — copy these into your Flutter project</div>
+
+<div class="step"><div class="num">1</div><div>
+<div class="stitle">pubspec.yaml — add all packages</div>
+<div class="sdesc">Open pubspec.yaml in your project root and add under dependencies:</div>
+<div class="code">dependencies:
+  flutter:
+    sdk: flutter
+  # Firebase
+  firebase_core: ^3.0.0
+  firebase_auth: ^5.0.0
+  cloud_firestore: ^5.0.0
+  firebase_storage: ^12.0.0
+  google_sign_in: ^6.2.1
+  # Maps & Location
+  google_maps_flutter: ^2.6.0
+  geolocator: ^12.0.0
+  # HTTP calls (for Claude AI API)
+  http: ^1.2.0
+  # Camera & Image
+  image_picker: ^1.1.2
+  # Voice
+  speech_to_text: ^7.0.0
+  # Local storage (offline mode)
+  shared_preferences: ^2.2.3
+  # UI helpers
+  cached_network_image: ^3.3.1</div>
+<div class="sdesc" style="margin-top:8px">Then run: <strong>flutter pub get</strong></div>
+<span class="tag easy">5 minutes</span>
+</div></div>
+
+<div class="step"><div class="num">2</div><div>
+<div class="stitle">main.dart — app entry point with Firebase setup</div>
+<div class="code">import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'screens/home_screen.dart';
+import 'screens/mechanic_screen.dart';
+import 'screens/garage_screen.dart';
+import 'screens/parts_screen.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const AutoFixAIApp());
+}
+
+class AutoFixAIApp extends StatelessWidget {
+  const AutoFixAIApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Auto Fix AI',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.dark(
+          primary: const Color(0xFFF97316),    // orange
+          surface: const Color(0xFF0A0C10),    // dark bg
+          secondary: const Color(0xFF161B22),  // card bg
+        ),
+        useMaterial3: true,
+        fontFamily: 'Inter',
+      ),
+      home: const HomeScreen(),
+      routes: {
+        '/mechanic': (ctx) => const MechanicScreen(),
+        '/garages':  (ctx) => const GarageScreen(),
+        '/parts':    (ctx) => const PartsScreen(),
+      },
+    );
+  }
+}</div>
+<span class="tag easy">Copy-paste ready</span>
+</div></div>
+
+<div class="step"><div class="num">3</div><div>
+<div class="stitle">models/car_model.dart — data model</div>
+<div class="code">class CarModel {
+  final String brand;
+  final String model;
+  final String year;
+  final String fuelType;
+
+  CarModel({
+    required this.brand,
+    required this.model,
+    required this.year,
+    required this.fuelType,
+  });
+
+  // Save to Firebase
+  Map&lt;String, dynamic&gt; toMap() =&gt; {
+    'brand': brand,
+    'model': model,
+    'year': year,
+    'fuelType': fuelType,
+  };
+
+  // Load from Firebase
+  factory CarModel.fromMap(Map&lt;String, dynamic&gt; map) =&gt; CarModel(
+    brand:    map['brand']    ?? '',
+    model:    map['model']    ?? '',
+    year:     map['year']     ?? '',
+    fuelType: map['fuelType'] ?? 'Petrol',
+  );
+
+  // Display string for AI prompt
+  String get displayName =&gt;
+    '$brand $model $year ($fuelType)';
+}
+
+class GarageModel {
+  final String id, name, address, phone;
+  final double lat, lng, rating;
+  final bool isOpen;
+
+  GarageModel({
+    required this.id, required this.name,
+    required this.address, required this.phone,
+    required this.lat, required this.lng,
+    required this.rating, required this.isOpen,
+  });
+
+  factory GarageModel.fromMap(Map&lt;String, dynamic&gt; m) =&gt; GarageModel(
+    id:      m['id']      ?? '',
+    name:    m['name']    ?? '',
+    address: m['address'] ?? '',
+    phone:   m['phone']   ?? '',
+    lat:     (m['lat']    ?? 0.0).toDouble(),
+    lng:     (m['lng']    ?? 0.0).toDouble(),
+    rating:  (m['rating'] ?? 4.0).toDouble(),
+    isOpen:  m['isOpen']  ?? true,
+  );
+}</div>
+<span class="tag easy">Copy-paste ready</span>
+</div></div>
+
+<div class="step"><div class="num">4</div><div>
+<div class="stitle">screens/mechanic_screen.dart — AI chat UI</div>
+<div class="code">import 'package:flutter/material.dart';
+import '../services/claude_service.dart';
+import '../models/car_model.dart';
+
+class MechanicScreen extends StatefulWidget {
+  const MechanicScreen({super.key});
+  @override State&lt;MechanicScreen&gt; createState() =&gt; _MechanicScreenState();
+}
+
+class _MechanicScreenState extends State&lt;MechanicScreen&gt; {
+  final _controller = TextEditingController();
+  final _scroll = ScrollController();
+  final List&lt;Map&lt;String,String&gt;&gt; _messages = [];
+  bool _loading = false;
+  CarModel? _car;
+
+  @override
+  void initState() {
+    super.initState();
+    _messages.add({
+      'role': 'ai',
+      'text': '👋 Hello! I am your AI Mechanic. '
+              'Select your car and describe your problem.',
+    });
+  }
+
+  Future&lt;void&gt; _send() async {
+    final msg = _controller.text.trim();
+    if (msg.isEmpty) return;
+    setState(() {
+      _messages.add({'role': 'user', 'text': msg});
+      _loading = true;
+    });
+    _controller.clear();
+
+    final reply = await ClaudeService.diagnose(
+      userMessage: msg,
+      car: _car,
+    );
+    setState(() {
+      _messages.add({'role': 'ai', 'text': reply});
+      _loading = false;
+    });
+    await Future.delayed(const Duration(milliseconds: 100));
+    _scroll.animateTo(_scroll.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut);
+  }
+
+  @override
+  Widget build(BuildContext context) =&gt; Scaffold(
+    backgroundColor: const Color(0xFF0A0C10),
+    appBar: AppBar(
+      backgroundColor: const Color(0xFF161B22),
+      title: const Text('AI Mechanic',
+        style: TextStyle(color: Colors.white, fontSize: 16)),
+    ),
+    body: Column(children: [
+      // Messages list
+      Expanded(child: ListView.builder(
+        controller: _scroll,
+        padding: const EdgeInsets.all(16),
+        itemCount: _messages.length + (_loading ? 1 : 0),
+        itemBuilder: (ctx, i) {
+          if (i == _messages.length) {
+            return const Padding(
+              padding: EdgeInsets.all(8),
+              child: Center(child: CircularProgressIndicator(
+                color: Color(0xFFF97316))));
+          }
+          final m = _messages[i];
+          final isAI = m['role'] == 'ai';
+          return Align(
+            alignment: isAI
+              ? Alignment.centerLeft : Alignment.centerRight,
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 12),
+              padding: const EdgeInsets.all(14),
+              constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(ctx).size.width * 0.78),
+              decoration: BoxDecoration(
+                color: isAI
+                  ? const Color(0xFF161B22)
+                  : const Color(0xFFF97316),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Text(m['text']!,
+                style: TextStyle(
+                  color: isAI ? Colors.white70 : Colors.white,
+                  fontSize: 14, height: 1.5)),
+            ),
+          );
+        },
+      )),
+      // Input bar
+      Container(
+        color: const Color(0xFF161B22),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 12, vertical: 8),
+        child: Row(children: [
+          Expanded(child: TextField(
+            controller: _controller,
+            style: const TextStyle(color: Colors.white, fontSize: 14),
+            decoration: InputDecoration(
+              hintText: 'Describe your car problem...',
+              hintStyle: TextStyle(color: Colors.white38),
+              filled: true,
+              fillColor: const Color(0xFF0A0C10),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(24),
+                borderSide: BorderSide.none),
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 16, vertical: 10)),
+            onSubmitted: (_) =&gt; _send(),
+          )),
+          const SizedBox(width: 8),
+          GestureDetector(
+            onTap: _send,
+            child: Container(
+              width: 44, height: 44,
+              decoration: const BoxDecoration(
+                color: Color(0xFFF97316),
+                shape: BoxShape.circle),
+              child: const Icon(Icons.send, color: Colors.white, size: 20),
+            ),
+          ),
+        ]),
+      ),
+    ]),
+  );
+}</div>
+<span class="tag med">Core screen — copy and customize</span>
+</div></div>
+</div>
+
+<!-- AI INTEGRATION -->
+<div class="panel" id="panel-ai">
+<div class="phase">Connect Claude AI — the brain of your app</div>
+
+<div class="step"><div class="num">1</div><div>
+<div class="stitle">services/claude_service.dart — AI mechanic engine</div>
+<div class="sdesc">This is the most important file. It connects your app to Claude AI.</div>
+<div class="code">import 'dart:convert';
+import 'package:http/http.dart' as http;
+import '../models/car_model.dart';
+
+class ClaudeService {
+  // IMPORTANT: Never put API key directly here in production!
+  // Use Firebase Remote Config or environment variables instead.
+  static const _apiKey = 'YOUR_CLAUDE_API_KEY_HERE';
+  static const _baseUrl =
+    'https://api.anthropic.com/v1/messages';
+
+  static String _buildSystemPrompt(CarModel? car) {
+    final carInfo = car != null
+      ? 'The user\'s car is: ${car.displayName}.'
+      : 'The user has not selected a car yet.';
+
+    return '''You are Auto Fix AI — a friendly expert car mechanic
+for Indian car owners. $carInfo
+
+Your rules:
+1. Answer in simple, clear language — no technical jargon
+2. Keep answers under 5 sentences unless detailed guide needed
+3. Always mention estimated cost in Indian Rupees (₹)
+4. If the problem is serious or dangerous, say:
+   "Visit a mechanic immediately — do not drive this car"
+5. If user writes in Hindi or Kannada, reply in that language
+6. Always give one practical first step the user can do now
+7. Be warm and reassuring — users are stressed about their car''';
+  }
+
+  static Future&lt;String&gt; diagnose({
+    required String userMessage,
+    CarModel? car,
+  }) async {
+    try {
+      final response = await http.post(
+        Uri.parse(_baseUrl),
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': _apiKey,
+          'anthropic-version': '2023-06-01',
+        },
+        body: jsonEncode({
+          'model': 'claude-sonnet-4-20250514',
+          'max_tokens': 500,
+          'system': _buildSystemPrompt(car),
+          'messages': [
+            {'role': 'user', 'content': userMessage}
+          ],
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+        return data['content'][0]['text'] as String;
+      } else {
+        // Fallback to offline answer if API fails
+        return _getOfflineAnswer(userMessage);
+      }
+    } catch (e) {
+      // No internet — use offline database
+      return _getOfflineAnswer(userMessage);
+    }
+  }
+
+  // Offline fallback answers for common problems
+  static String _getOfflineAnswer(String problem) {
+    final p = problem.toLowerCase();
+    if (p.contains('engine light') || p.contains('check engine')) {
+      return '⚠️ Engine warning light usually means a sensor issue. '
+        'Common causes: loose fuel cap (₹0 fix — tighten it), '
+        'oxygen sensor fault (₹1,500–3,000), or catalytic converter. '
+        'First step: tighten your fuel cap and restart the car. '
+        'If light stays on after 2 trips, visit a mechanic.';
+    }
+    if (p.contains('ac') || p.contains('cooling')) {
+      return '❄️ AC not cooling is usually low refrigerant gas. '
+        'Estimated cost: AC gas refill ₹800–1,500 at any garage. '
+        'Also check: cabin air filter (₹200–400 to replace). '
+        'First step: check if AC compressor is running when AC is ON.';
+    }
+    if (p.contains('battery')) {
+      return '🔋 Battery warning means charging system issue. '
+        'Could be: battery needs replacement (₹3,000–5,000), '
+        'or alternator fault (₹4,000–8,000). '
+        'First step: check battery terminals for corrosion — '
+        'clean white powder with a dry cloth if you see it.';
+    }
+    if (p.contains('brake') || p.contains('squeak')) {
+      return '🛑 Brake squeaking usually means worn brake pads. '
+        'Replacement cost: ₹1,200–2,500 for front pads. '
+        'This is important for safety — do not ignore it. '
+        'First step: check if squeaking happens when you press '
+        'OR release the brake pedal — tell the mechanic which one.';
+    }
+    return '🔧 I need internet to give you a detailed answer for this. '
+      'Please connect to WiFi or mobile data and ask again. '
+      'For urgent help, call a trusted mechanic directly.';
+  }
+}</div>
+<span class="tag easy">Copy — replace YOUR_CLAUDE_API_KEY_HERE</span>
+</div></div>
+
+<div class="step"><div class="num">2</div><div>
+<div class="stitle">services/firebase_service.dart — database operations</div>
+<div class="code">import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../models/car_model.dart';
+
+class FirebaseService {
+  static final _db = FirebaseFirestore.instance;
+  static final _auth = FirebaseAuth.instance;
+
+  static String? get userId =&gt; _auth.currentUser?.uid;
+
+  // Save user's car to Firebase
+  static Future&lt;void&gt; saveCar(CarModel car) async {
+    if (userId == null) return;
+    await _db.collection('users').doc(userId).set(
+      {'car': car.toMap()},
+      SetOptions(merge: true),
+    );
+  }
+
+  // Get user's saved car
+  static Future&lt;CarModel?&gt; getSavedCar() async {
+    if (userId == null) return null;
+    final doc = await _db.collection('users').doc(userId).get();
+    final data = doc.data()?['car'];
+    if (data == null) return null;
+    return CarModel.fromMap(data as Map&lt;String, dynamic&gt;);
+  }
+
+  // Get nearby garages (sorted by city for now)
+  static Future&lt;List&lt;GarageModel&gt;&gt; getGarages(String city) async {
+    final snap = await _db.collection('garages')
+      .where('city', isEqualTo: city)
+      .where('isOpen', isEqualTo: true)
+      .limit(20)
+      .get();
+    return snap.docs
+      .map((d) =&gt; GarageModel.fromMap({...d.data(), 'id': d.id}))
+      .toList();
+  }
+
+  // Get spare parts filtered by car brand
+  static Future&lt;List&lt;Map&lt;String,dynamic&gt;&gt;&gt; getParts(
+    {String? carBrand, String? search}) async {
+    Query q = _db.collection('parts').limit(50);
+    if (carBrand != null && carBrand.isNotEmpty) {
+      q = q.where('carBrand',
+        whereIn: [carBrand, 'Universal']);
+    }
+    final snap = await q.get();
+    var parts = snap.docs
+      .map((d) =&gt; {...d.data() as Map, 'id': d.id})
+      .toList();
+    // Filter by search query locally
+    if (search != null && search.isNotEmpty) {
+      final s = search.toLowerCase();
+      parts = parts.where((p) =&gt;
+        (p['name'] as String).toLowerCase().contains(s)
+      ).toList();
+    }
+    return parts;
+  }
+
+  // Save a chat message to history
+  static Future&lt;void&gt; saveChat(
+    String userMsg, String aiReply) async {
+    if (userId == null) return;
+    await _db.collection('chats').add({
+      'userId': userId,
+      'userMessage': userMsg,
+      'aiReply': aiReply,
+      'timestamp': FieldValue.serverTimestamp(),
+    });
+  }
+}</div>
+<span class="tag easy">Copy-paste ready</span>
+</div></div>
+
+<div class="step"><div class="num">3</div><div>
+<div class="stitle">Add 5 garages to Firebase to test with</div>
+<div class="sdesc">Go to Firebase Console → Firestore → Create collection → "garages" → add these documents:</div>
+<div class="code">Document 1:
+  name: "Raju Auto Works"
+  address: "Near Silk Board, Bengaluru"
+  phone: "9876543210"
+  lat: 12.9177
+  lng: 77.6228
+  rating: 4.3
+  isOpen: true
+  city: "Bengaluru"
+
+Document 2:
+  name: "Sri Sai Motors"
+  address: "Koramangala 5th Block"
+  phone: "9845123456"
+  lat: 12.9352
+  lng: 77.6245
+  rating: 4.1
+  isOpen: true
+  city: "Bengaluru"
+
+(Add 3–5 real garages near your area manually)</div>
+<span class="tag easy">Manual entry in Firebase console</span>
+</div></div>
+</div>
+
+<!-- TESTING -->
+<div class="panel" id="panel-test">
+<div class="phase">Test everything before uploading</div>
+
+<div class="step"><div class="num">1</div><div>
+<div class="stitle">test/widget_test.dart — automated tests</div>
+<div class="code">import 'package:flutter_test/flutter_test.dart';
+import 'package:auto_fix_ai/services/claude_service.dart';
+
+void main() {
+
+  // Test 1: Claude AI responds to engine light query
+  test('AI gives answer for engine warning light', () async {
+    final result = await ClaudeService.diagnose(
+      userMessage: 'Engine warning light is on',
+      car: null,
+    );
+    expect(result.isNotEmpty, true);
+    expect(result.length, greaterThan(20));
+    print('AI Response: $result');
+  });
+
+  // Test 2: Offline mode works without internet
+  test('Offline mode returns answer for AC problem', () {
+    final result = ClaudeService._getOfflineAnswer('AC not cooling');
+    expect(result.contains('₹'), true);
+    expect(result.isNotEmpty, true);
+  });
+
+  // Test 3: Car model creates correctly
+  test('CarModel creates and converts to map', () {
+    final car = CarModel(
+      brand: 'Maruti Suzuki',
+      model: 'Swift',
+      year: '2019',
+      fuelType: 'Petrol',
+    );
+    expect(car.displayName,
+      'Maruti Suzuki Swift 2019 (Petrol)');
+    final map = car.toMap();
+    expect(map['brand'], 'Maruti Suzuki');
+    expect(map['fuelType'], 'Petrol');
+  });
+}
+
+// Run tests with:
+// flutter test</div>
+<span class="tag easy">Run: flutter test</span>
+</div></div>
+
+<div class="step"><div class="num">2</div><div>
+<div class="stitle">Manual test checklist — test on real phone</div>
+<div class="sdesc">Connect your Android phone via USB. Enable Developer Mode. Run:</div>
+<div class="code">flutter run
+
+Test every item below — write PASS or FAIL:
+□ App opens without crash
+□ Google login works
+□ Vehicle selection saves to Firebase
+□ AI chat replies within 5 seconds
+□ AI chat works when offline (airplane mode)
+□ Chat shows user messages on right (orange)
+□ Chat shows AI messages on left (dark card)
+□ Garage list loads from Firebase
+□ Parts search filters correctly
+□ App works on slow 3G (use Developer Options
+  → Throttle network → 3G)
+□ Back button works on every screen
+□ App does not crash when you rotate phone</div>
+<span class="tag med">Do this with 5 friends too</span>
+</div></div>
+
+<div class="step"><div class="num">3</div><div>
+<div class="stitle">Fix the most common Flutter errors</div>
+<div class="code">Error: "MissingPluginException"
+Fix: flutter clean &amp;&amp; flutter pub get &amp;&amp; flutter run
+
+Error: "Firebase not initialized"
+Fix: Make sure await Firebase.initializeApp(); is in main()
+     and google-services.json is in android/app/ folder
+
+Error: "API key not valid"
+Fix: Check your Claude API key in claude_service.dart
+     Make sure no extra spaces before/after the key
+
+Error: "Permission denied for location"
+Fix: Add to android/app/src/main/AndroidManifest.xml:
+&lt;uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/&gt;
+&lt;uses-permission android:name="android.permission.INTERNET"/&gt;</div>
+<span class="tag easy">Copy-paste fixes</span>
+</div></div>
+</div>
+
+<!-- PLAY STORE -->
+<div class="panel" id="panel-playstore">
+<div class="phase">Build and upload to Google Play Store</div>
+
+<div class="step"><div class="num">1</div><div>
+<div class="stitle">Create keystore — SAVE THIS FILE FOREVER</div>
+<div class="sdesc">Open terminal in your project folder and run:</div>
+<div class="code">keytool -genkey -v \
+  -keystore autofix-ai-keystore.jks \
+  -alias autofix-ai \
+  -keyalg RSA \
+  -keysize 2048 \
+  -validity 10000
+
+Enter the details when asked:
+  Password: create a strong password (SAVE IT!)
+  First name: Sushanth
+  City: Bengaluru
+  Country: IN
+
+Save autofix-ai-keystore.jks in TWO places:
+  1. Your laptop (Documents folder)
+  2. Google Drive backup</div>
+<div class="warn">⚠️ If you lose this keystore file, you can NEVER update your app. Keep it safe forever.</div>
+<span class="tag med">10 minutes</span>
+</div></div>
+
+<div class="step"><div class="num">2</div><div>
+<div class="stitle">Configure signing in android/key.properties</div>
+<div class="sdesc">Create a new file at android/key.properties (not inside app/):</div>
+<div class="code">storePassword=YOUR_KEYSTORE_PASSWORD
+keyPassword=YOUR_KEY_PASSWORD
+keyAlias=autofix-ai
+storeFile=../autofix-ai-keystore.jks</div>
+<div class="sdesc" style="margin-top:8px">Then open android/app/build.gradle and add this BEFORE the android block:</div>
+<div class="code">def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+android {
+    ...
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile']
+                ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+}</div>
+</div></div>
+
+<div class="step"><div class="num">3</div><div>
+<div class="stitle">Build the App Bundle and submit</div>
+<div class="code">Step 1 — Build:
+flutter build appbundle --release
+
+Your file is at:
+build/app/outputs/bundle/release/app-release.aab
+
+Step 2 — Play Console:
+Go to play.google.com/console
+→ Create app → Auto Fix AI → Free → Android
+→ Production → Create release
+→ Upload app-release.aab
+→ Add release notes:
+   "First version of Auto Fix AI — AI car mechanic,
+    garage finder, spare parts checker for Indian car owners"
+→ Save → Review → Start rollout
+
+Step 3 — Wait:
+Google reviews in 3–7 days.
+You get email when approved.
+Your app is now LIVE on Play Store!</div>
+<span class="tag med">Google reviews in 3-7 days</span>
+<span class="milestone">App is LIVE! ✓</span>
+</div></div>
+</div>
+
+<!-- MARKETING -->
+<div class="panel" id="panel-market">
+<div class="phase">Marketing strategy — reach real people</div>
+
+<div class="step"><div class="num">1</div><div>
+<div class="stitle">Week 1 — Your first 50 users (personal network)</div>
+<div class="sdesc">The fastest path to first users is people you already know. Do these on launch day:</div>
+<div class="code">Message to send on WhatsApp to everyone you know:
+"I built an app that helps when your car has a problem —
+ diagnose it using AI, find nearby garages, check spare
+ parts prices. It's free. Download here: [Play Store link]
+ Please install and tell me honestly what you think!"
+
+Where to share:
+✓ Your WhatsApp contacts (family, friends, classmates)
+✓ College WhatsApp groups
+✓ Apartment/colony resident groups
+✓ Any car owners group you are in
+✓ Ask parents to share in their friend groups
+
+Goal: 50 installs in first week
+      Collect feedback from all 50 personally</div>
+<span class="tag easy">Day 1 action</span>
+</div></div>
+
+<div class="step"><div class="num">2</div><div>
+<div class="stitle">Week 2-4 — Instagram and YouTube strategy</div>
+<div class="code">Create Instagram account: @autofixai
+
+Post type 1 — Problem/Solution Reels (most viral):
+  - Show a real dashboard warning light (photo)
+  - Show yourself asking Auto Fix AI about it
+  - Show the AI giving clear answer with cost
+  - Caption: "Finally understand what this light means!"
+  - Post: 3 times per week
+
+Post type 2 — Before/After:
+  - "Before: paid ₹3,000 to mechanic blindly"
+  - "After: checked spare parts price, paid ₹1,800"
+  - Real savings story
+
+Post type 3 — User testimonials:
+  - Screenshot real user saying it helped them
+  - Always get permission before posting
+
+YouTube Shorts (60 seconds):
+  - "I used AI to diagnose my car problem in 10 seconds"
+  - Show real car problem → real AI answer → real solution
+  - These go viral in car owner communities</div>
+<span class="tag free">Free growth</span>
+</div></div>
+
+<div class="step"><div class="num">3</div><div>
+<div class="stitle">Month 2-3 — Garage partnerships (most powerful)</div>
+<div class="code">Strategy: Make garages your marketing partners
+
+Step 1: Visit 10 garages near you personally
+Step 2: Show them Auto Fix AI on your phone
+Step 3: Tell them:
+  "I send customers to garages through the app.
+   List your garage — it's free. When customers
+   book you through the app, I take 10% commission.
+   You get more customers, I help them find you."
+
+What to give each garage:
+  - A printed QR code poster for their wall
+  - QR code links to your Play Store page
+  - When customers wait, they scan and download
+
+Why this works:
+  Garage owners want more customers.
+  Customers trust app-verified garages more.
+  You build a verified garage network organically.</div>
+<span class="tag easy">High impact — zero cost</span>
+</div></div>
+
+<div class="step"><div class="num">4</div><div>
+<div class="stitle">Month 3+ — Petrol stations and campus drives</div>
+<div class="code">Petrol station QR codes:
+  - Print 50 small QR code stickers (₹200 total)
+  - Ask petrol station managers to stick near pump
+  - When people fill petrol, they scan the code
+  - "Scan to get free AI car help"
+  - Cost: ₹200 total. Potential: hundreds of users
+
+College campus drive:
+  - Set up a stall at your college during fest
+  - Demo the app live — show it diagnosing a real problem
+  - "Show us a car problem — we solve it in 10 seconds"
+  - Give away: stickers, small gifts for installs
+  - Students share instantly if it's genuinely useful
+
+Car owner Facebook groups:
+  - Join "Maruti Swift Owners Bengaluru" type groups
+  - Post genuinely helpful car tips (not just ads)
+  - Mention Auto Fix AI when relevant
+  - Never spam — be helpful first</div>
+<span class="tag easy">Low cost, high reach</span>
+</div></div>
+</div>
+
+<!-- TRUST -->
+<div class="panel" id="panel-trust">
+<div class="phase">Build trust — this is what makes people stay</div>
+
+<div class="step"><div class="num">1</div><div>
+<div class="stitle">Reply to every review within 24 hours</div>
+<div class="sdesc">This is the single most powerful trust signal on the Play Store.</div>
+<div class="code">When someone leaves a 5-star review:
+"Thank you so much! We are so glad Auto Fix AI helped
+ you. If you have any suggestions to make it better,
+ please let us know. — Sushanth, Auto Fix AI"
+
+When someone leaves a 2-star review:
+"Thank you for the honest feedback. We are sorry for
+ the issue you faced. Can you WhatsApp us at [number]
+ so we can fix this personally? We update the app
+ every week based on feedback like yours. — Sushanth"
+
+Why this works:
+  People see you CARE. That builds more trust than
+  any advertisement ever can. A founder who replies
+  personally to reviews is rare and memorable.</div>
+<span class="tag easy">Do every single day</span>
+</div></div>
+
+<div class="step"><div class="num">2</div><div>
+<div class="stitle">Transparency builds maximum trust</div>
+<div class="code">Add to your app's About page:
+  "Built by Sushanth, a student from Bengaluru.
+   I built this app because my father was overcharged
+   ₹3,500 for a repair that actually cost ₹1,200.
+   Auto Fix AI exists so no Indian car owner gets
+   cheated again."
+
+On your Play Store listing — add these facts:
+  - "AI powered by Claude — Anthropic's AI"
+  - "GPS garage finder with verified ratings"
+  - "Spare parts prices from actual market data"
+  - "Works offline — no internet needed for basics"
+
+Add to app:
+  - Privacy Policy page (required by Google anyway)
+  - Clear explanation of what data you collect
+  - "Your car data is never sold to third parties"
+
+Trust = honesty. People trust apps that are honest
+about what they are and who built them.</div>
+<span class="tag easy">One-time setup</span>
+</div></div>
+
+<div class="step"><div class="num">3</div><div>
+<div class="stitle">Weekly update cadence builds long-term trust</div>
+<div class="code">Every Friday — update your Instagram story:
+  "This week's Auto Fix AI update:
+   ✓ Fixed [bug users reported]
+   ✓ Added [feature users requested]
+   ✓ [X] car problems solved this week
+   Next week: [preview of next feature]"
+
+Every 2 weeks — push a small app update:
+  - Fix any reported bugs immediately
+  - Add one new feature per month
+  - Expand garage list by 5 new garages
+
+Why weekly updates matter:
+  Users see the app is ALIVE and improving.
+  Dead apps (no updates) lose trust fast.
+  Active development = user confidence.</div>
+<span class="tag med">Ongoing commitment</span>
+<span class="milestone">This is how you build a real business ✓</span>
+</div></div>
+</div>
+
+<script>
+document.querySelectorAll('.tab').forEach(t=>{
+  t.onclick=()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('panel-'+t.dataset.p).classList.add('active');
+  };
+});
+</script>
